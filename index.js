@@ -40,7 +40,6 @@ const ejsSendMail = (configData)=>{
                     break
                 default:
                     throw Error('BodyType setted not exists')
-    
             }
         }
 
