@@ -21,7 +21,7 @@ const getImages = (setImages)=>{
         fs.readFile(path.join(__dirname,filePath),(erro,buffer)=>{
             if(erro)
             {
-                throw Error('Image can´t set')
+                throw Error(`Image can´t be set. ${erro}`)
     
             }else{
                 const imageConfig = [
