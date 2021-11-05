@@ -2,7 +2,6 @@ const sendMail = require("./emailService")
 const ejsCompiler = require('./ejsCompiler')
 const getImages = require("./getImages")
 
-
 const ejsSendMail = (configData)=>{
     const send = (mailData)=>{
         
