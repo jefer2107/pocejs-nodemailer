@@ -6,7 +6,7 @@ const getImages = (setImages)=>{
     const filePath = setImages[0].filePath
     const cid = setImages[0].cid
     const buffer = setImages[0].buffer
-
+    
     if(buffer){
         const imageConfig = [
             {

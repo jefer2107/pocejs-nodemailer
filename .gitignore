@@ -1,2 +1,2 @@
 /node_modules
-./ejsSendMail.test.js
+ejsSendMail.test.js
