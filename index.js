@@ -26,11 +26,16 @@ const ejsSendMail = (configData)=>{
                     if(mail.body.images){
                         const getEjsCompiler = ejsCompiler(mail.body.content,mail.body?.ejsModel)
                         const setImages = mail.body.images
-                        const images = getImages(setImages)
+                        if(mail.body.images[0].buffer){
+                            const images = getImages(setImages, getEjsCompiler,mailData,configData)
             
-                        bodyContent = {
-                            getEjsCompiler,
-                            images
+                            bodyContent = {
+                                getEjsCompiler,
+                                images
+                            }
+                        }else{
+                            getImages(setImages, getEjsCompiler,mailData,configData)
+                            return false
                         }
 
                     }else{
