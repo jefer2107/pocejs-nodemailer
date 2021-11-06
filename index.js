@@ -3,8 +3,7 @@ const ejsCompiler = require('./ejsCompiler')
 const getImages = require("./getImages")
 
 const ejsSendMail = (configData)=>{
-    const send = (mailData)=>{
-        
+    const send = (mailData)=>{        
         const {mail} = mailData
         
         if(!configData.smtp) throw Error('Config data not configured')
