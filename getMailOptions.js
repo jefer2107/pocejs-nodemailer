@@ -11,6 +11,7 @@ const getMailOptions = (sendMailData, bodyType)=>{
                 text: sendMailData.body.bodyContent
             }
             break
+        case 'html':
         case 'ejs':
             const {images} = sendMailData.body.bodyContent
             mailOptions = {
