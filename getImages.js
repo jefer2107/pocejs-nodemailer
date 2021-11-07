@@ -16,7 +16,7 @@ const getImages = (setImages, ejsCompiler,mailData,configData)=>{
         imageConfig = [
             {
                 filename,
-                content: buffer,
+                content: new Buffer(buffer),
             }
         ]
 
