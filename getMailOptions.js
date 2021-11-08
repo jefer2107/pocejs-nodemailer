@@ -1,6 +1,7 @@
 
 const getMailOptions = (sendMailData, bodyType)=>{
     let mailOptions = {}
+    const {images} = sendMailData.body.bodyContent
 
     switch(bodyType){
         case 'text':
@@ -8,12 +9,12 @@ const getMailOptions = (sendMailData, bodyType)=>{
                 from: sendMailData.from,
                 to: sendMailData.to,
                 subject: sendMailData.subject,
+                attachments:images,
                 text: sendMailData.body.bodyContent
             }
             break
         case 'html':
         case 'ejs':
-            const {images} = sendMailData.body.bodyContent
             mailOptions = {
                 from: sendMailData.from,
                 to: sendMailData.to,

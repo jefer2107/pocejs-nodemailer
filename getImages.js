@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const sendMail = require('./emailService')
 
-const getImages = (setImages, ejsCompiler,mailData,configData)=>{
+const getImages = (setImages, content,mailData,configData)=>{
 
     const filename = setImages[0].filename
     const filePath = setImages[0].filePath
@@ -16,7 +16,7 @@ const getImages = (setImages, ejsCompiler,mailData,configData)=>{
         imageConfig = [
             {
                 filename,
-                content: new Buffer(buffer),
+                content: buffer,
             }
         ]
 
@@ -39,7 +39,7 @@ const getImages = (setImages, ejsCompiler,mailData,configData)=>{
                 let bodyContent
 
                 bodyContent = {
-                    ejsCompiler,
+                    content,
                     images: imageConfig
                 }
 
