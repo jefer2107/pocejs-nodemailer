@@ -9,7 +9,6 @@ const getMailOptions = (sendMailData, bodyType)=>{
                 from: sendMailData.from,
                 to: sendMailData.to,
                 subject: sendMailData.subject,
-                attachments:images,
                 text: sendMailData.body.bodyContent
             }
             break
@@ -20,7 +19,7 @@ const getMailOptions = (sendMailData, bodyType)=>{
                 to: sendMailData.to,
                 subject: sendMailData.subject,
                 attachments:images,
-                html: sendMailData.body.bodyContent
+                html: sendMailData.body.bodyContent.content
             }
             break
     }

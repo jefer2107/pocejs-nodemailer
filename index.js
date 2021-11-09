@@ -19,24 +19,29 @@ const ejsSendMail = (configData)=>{
     
             switch(bodyType){
                 case 'text':
+                    bodyContent = mail.body.content
+                    break
                 case 'html':
                     if(setImages){
+                        let content = mail.body.content
                         if(mail.body.images[0].buffer){
-                            const images = getImages(setImages,bodyContent,mailData,configData)
+                            const images = getImages(setImages,content,mailData,configData)
                 
                             bodyContent = {
-                                bodyContent,
+                                content,
                                 images
                             }
                             
                         }else{
-                            getImages(setImages,bodyContent,mailData,configData)
+                            getImages(setImages,content,mailData,configData)
                             return false
                         }
                     }else{
-                        bodyContent = mail.body.content
+                        bodyContent = {
+                            content: mail.body.content
+                        }
                     } 
-                break
+                    break
                 case 'ejs':
                     const getEjsCompiler = ejsCompiler(mail.body.content,mail.body?.ejsModel)
 
@@ -45,7 +50,7 @@ const ejsSendMail = (configData)=>{
                             const images = getImages(setImages, getEjsCompiler,mailData,configData)
             
                             bodyContent = {
-                                getEjsCompiler,
+                                content: getEjsCompiler,
                                 images
                             }
                         }else{
@@ -54,7 +59,9 @@ const ejsSendMail = (configData)=>{
                         }
 
                     }else{
-                        bodyContent = ejsCompiler(mail.body.content,mail.body?.ejsModel)
+                        bodyContent = {
+                            content: getEjsCompiler,
+                        }
                         
                     }
                     break
