@@ -1,25 +1,25 @@
 
-const getMailOptions = (sendMailData, bodyType)=>{
+const getMailOptions = (mailData, bodyType)=>{
     let mailOptions = {}
-    const {images} = sendMailData.body.bodyContent
+    const {images} = mailData.body.bodyContent
 
     switch(bodyType){
         case 'text':
             mailOptions = {
-                from: sendMailData.from,
-                to: sendMailData.to,
-                subject: sendMailData.subject,
-                text: sendMailData.body.bodyContent
+                from: mailData.from,
+                to: mailData.to,
+                subject: mailData.subject,
+                text: mailData.body.bodyContent
             }
             break
         case 'html':
         case 'ejs':
             mailOptions = {
-                from: sendMailData.from,
-                to: sendMailData.to,
-                subject: sendMailData.subject,
+                from: mailData.from,
+                to: mailData.to,
+                subject: mailData.subject,
                 attachments:images,
-                html: sendMailData.body.bodyContent.content
+                html: mailData.body.bodyContent.content
             }
             break
     }

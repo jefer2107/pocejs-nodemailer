@@ -1,9 +1,9 @@
 const ejs = require('ejs')
 
-const ejsCompiler = (ejsTemplate, data)=>{
-    if(!ejsTemplate) throw Error('ejsTemplate not exists.')
+const ejsCompiler = (ejsContent, data)=>{
+    if(!ejsContent) throw Error('ejsTemplate not exists.')
 
-    let template = ejs.compile(ejsTemplate)
+    let template = ejs.compile(ejsContent)
     const html = template(data)
     return html  
 }
