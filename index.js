@@ -4,13 +4,13 @@ const sendImages = require("./sendImages")
 
 const ejsSendMail = (configData)=>{
     const send = (mailData)=>{        
-        const {mail} = mailData
         
-        if(!configData.smtp) throw Error('Config data not configured')
-        if(!mailData) throw Error('Data wasn´n informed')
-        if(!mail.from) throw Error('from should be set')
-        if(!mail.to) throw Error('to should be set')
+        if(!configData) throw Error('Config data not configured')
+        if(!mailData) throw Error('mailData wasn´n informed')
+        if(!mailData.mail.from ) throw Error('from should be set')
+        if(!mailData.mail.to ) throw Error('to should be set')
     
+        const {mail} = mailData
         let bodyContent
     
         if(mail.body && mail.body.bodyType) {

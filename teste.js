@@ -6,7 +6,8 @@ ejsSendMail({
         host: "smtp.gmail.com",
         user:'wx2sistemasteste@gmail.com',
         password:'m3t@lp0p0',
-        secure: true
+        port: 587,
+        secure: false
     }
 }).send({
     mail: {

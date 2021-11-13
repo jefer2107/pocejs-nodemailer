@@ -25,6 +25,7 @@ const getMailOptions = (mailData, bodyType)=>{
     }
 
     return mailOptions
+
 }
 
 module.exports = getMailOptions

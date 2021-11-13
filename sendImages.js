@@ -15,6 +15,7 @@ const sendImages = (images,content,mailData,configData)=>{
             return false
         }
     }
+    
     const hasFilepath = checkForFilepath(images)
 
     images.forEach(x=>{

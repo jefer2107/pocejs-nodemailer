@@ -2,15 +2,18 @@ const nodemailer = require('nodemailer')
 const getMailOptions = require('./getMailOptions')
 
 const send = ({configData,mailData})=>{
-    if(!configData.smtp) throw Error(`SMTP config not configured. Please, configure calling 'config' funtion`)
+    if(!configData) throw Error(`SMTP config not configured. Please, configure calling 'config' funtion`)
     if(!mailData) throw Error(`Email data not exists. Please, set emai data as parameter`)
 
+    const {smtp} = configData
+
     const transporter = nodemailer.createTransport({ 
-        host:configData.host,
-        secure:configData.secure,
+        host:smtp.host,
+        secure:smtp.secure,
+        port:smtp.port,
         auth: {
-            user:configData.user,
-            pass:configData.password
+            user:smtp.user,
+            pass:smtp.password
         }
     })
 
