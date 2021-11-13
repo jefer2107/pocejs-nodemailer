@@ -2,7 +2,7 @@ const sendMail = require("./emailService")
 const ejsCompiler = require('./ejsCompiler')
 const sendImages = require("./sendImages")
 
-const sendMailConfig = (configData)=>{
+const ejsSendMail = (configData)=>{
     const send = (mailData)=>{        
         const {mail} = mailData
         
@@ -66,8 +66,11 @@ const sendMailConfig = (configData)=>{
             })
             
         } catch (e) {
+            
             throw Error(`Send mail fail.${e.message}`)
         }
+
+        
     }
 
     return{
@@ -76,4 +79,4 @@ const sendMailConfig = (configData)=>{
 }
 
 
-module.exports = sendMailConfig
+module.exports = ejsSendMail

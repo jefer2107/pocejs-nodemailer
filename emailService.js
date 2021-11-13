@@ -21,7 +21,8 @@ const send = ({configData,mailData})=>{
     transporter.sendMail(mailOptions,(error)=>{
         if(error)
         {
-            throw Error(error)
+            throw Error(error.message)
+            
         }
         else
         {
