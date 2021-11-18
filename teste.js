@@ -12,30 +12,12 @@ ejsSendMail({
 }).send({
     mail: {
         from: 'wx2sistemasteste@gmail.com',
-        to:'jefer210784@gmail.com',
-        subject:'the message test',
+        to:'jefer210784@gmail.com,franciscco917@gmail.com',
+        subject:'Menagem para o Francisco',
         body: {
-            bodyType: 'ejs',
-            content: `<h1>EJS</h1>`,
-            images:[
-                {
-                    filename: 'node',
-                    filePath:'images/node.png',
-                    cid: 'node'
-                },
-                {
-                    filename: 'html buffer',
-                    buffer: 'buffer 1234'
-                },
-                {
-                    filename: 'html filepath',
-                    filePath:'images/html5.png',
-                    cid: 'html'
-                }
+            bodyType: 'text',
+            content: `Testando`,
                 
-                
-            ]
-            
         }
     }
 })

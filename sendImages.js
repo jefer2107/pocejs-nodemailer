@@ -3,6 +3,11 @@ const path = require('path')
 const sendMail = require('./emailService')
 
 const sendImages = (images,content,mailData,configData)=>{
+    if(!images || images == undefined)  throw Error('image data not informed.')
+    if(!content || content == undefined) throw Error('content data not informed.')
+    if(!mailData || mailData == undefined) throw Error('mailData data not informed.')
+    if(!configData || configData == undefined) throw Error('configData data not informed.')
+
     let fileImages
     const newFileImages = []
     const {mail} = mailData
@@ -64,20 +69,26 @@ const sendImages = (images,content,mailData,configData)=>{
                     } catch (e) {
                         throw Error(`Send mail fail.${e.message}`)
                     }
-                    
+
+                    //console.log('newFileImages buffer: ',newFileImages)
+
+                    return false
+
                 }
 
+            }else{
+
+                fileImages=[
+                    {
+                        filename: x.filename,
+                        buffer: x.buffer
+                    }
+                ]
+                const filterObjectsImages = fileImages.find(x=> x.filename)
+    
+                newFileImages.push(filterObjectsImages)
             }
 
-            fileImages=[
-                {
-                    filename: x.filename,
-                    buffer: x.buffer
-                }
-            ]
-            const filterObjectsImages = fileImages.find(x=> x.filename)
-
-            newFileImages.push(filterObjectsImages)
             
         }else{
             
@@ -137,7 +148,10 @@ const sendImages = (images,content,mailData,configData)=>{
         
     })
 
-  
+
+  return {
+      newFileImages
+    }
 }
 
 module.exports = sendImages

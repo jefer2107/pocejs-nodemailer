@@ -3,7 +3,12 @@ const ejsCompiler = require('./ejsCompiler')
 const sendImages = require("./sendImages")
 
 const ejsSendMail = (configData)=>{
-    const send = (mailData)=>{        
+
+    const send = (mailData)=>{
+        
+        const newMailData = {
+            data: null
+        }
         
         if(!configData) throw Error('Config data not configured')
         if(!mailData) throw Error('mailData wasn´n informed')
@@ -51,7 +56,7 @@ const ejsSendMail = (configData)=>{
 
         const bodyType = mail.body.bodyType
 
-        const newMailData = {
+        const data = {
             ...mailData.mail,
             body: {
                 bodyType,
@@ -59,10 +64,14 @@ const ejsSendMail = (configData)=>{
             }
         }
 
+        newMailData.data = data
+
+        //console.log('index newMailData: ',newMailData)
+
         try {
             sendMail.send({
                 configData,
-                mailData: newMailData
+                mailData: newMailData.data
             })
             
         } catch (e) {
@@ -70,11 +79,15 @@ const ejsSendMail = (configData)=>{
             throw Error(`Send mail fail.${e.message}`)
         }
 
+        return{
+            newMailData
+        }
+
         
     }
 
     return{
-        send 
+        send
     }
 }
 
