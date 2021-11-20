@@ -25,7 +25,7 @@ const sendImages = (images,content,mailData,configData)=>{
 
     images.forEach(x=>{
         if(x.buffer){
-            if(hasFilepath == false){
+            if(!hasFilepath){
                 fileImages=[
                     {
                         filename: x.filename,
@@ -66,8 +66,6 @@ const sendImages = (images,content,mailData,configData)=>{
                     } catch (e) {
                         throw Error(`Send mail fail.${e.message}`)
                     }
-
-                    //console.log('newFileImages buffer: ',newFileImages)
 
                     return false
 
