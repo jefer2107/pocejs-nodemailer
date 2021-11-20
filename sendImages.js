@@ -26,19 +26,16 @@ const sendImages = (images,content,mailData,configData)=>{
     images.forEach(x=>{
         if(x.buffer){
             if(hasFilepath == false){
-                images.forEach(x=>{
-                    fileImages=[
-                        {
-                            filename: x.filename,
-                            buffer: x.buffer
-                        }
-                    ]
+                fileImages=[
+                    {
+                        filename: x.filename,
+                        buffer: x.buffer
+                    }
+                ]
 
-                    const filterObjectsImages = fileImages.find(x=> x.filename)
+                const filterObjectsImages = fileImages.find(x=> x.filename)
 
-                    newFileImages.push(filterObjectsImages)
-
-                })
+                newFileImages.push(filterObjectsImages)
 
                 const newImagesLength = newFileImages.length
 
@@ -147,7 +144,6 @@ const sendImages = (images,content,mailData,configData)=>{
         }
         
     })
-
 
   return {
       newFileImages
