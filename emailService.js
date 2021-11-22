@@ -29,7 +29,8 @@ const send = ({configData,mailData})=>{
         }
         else
         {
-            console.log('Email enviado com sucesso!')
+            const message = 'Email enviado com sucesso!'
+            return message
         }
     })
 }

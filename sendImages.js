@@ -2,9 +2,15 @@ const fs = require('fs')
 const path = require('path')
 const sendMail = require('./emailService')
 
-const sendImages = (images,content,mailData,configData)=>{
-    if(!images || images == undefined)  throw Error('image data not informed.')
-    if(!content || content == undefined) throw Error('content data not informed.')
+const sendImages = (content,mailData,configData)=>{
+    const newMailData = {
+        data: null
+    }
+
+    const {images} = mailData.mail.body
+
+    if(!images || images == [])  throw Error('image data not informed.')
+    if(!content || content == '') throw Error('content data not informed.')
     if(!mailData || mailData == undefined) throw Error('mailData data not informed.')
     if(!configData || configData == undefined) throw Error('configData data not informed.')
 
@@ -13,8 +19,8 @@ const sendImages = (images,content,mailData,configData)=>{
     const {mail} = mailData
     const imagesLength = images.length
     const checkForFilepath = (images)=>{
-        const isFilepath = images.find(x=>x.filePath)
-        if(isFilepath){
+        const verifyFilepath = images.find(x=>x.filePath)
+        if(verifyFilepath){
             return true
         }else{
             return false
@@ -49,18 +55,20 @@ const sendImages = (images,content,mailData,configData)=>{
                                         
                     const bodyType = mail.body.bodyType
                                         
-                    const newMailData = {
+                    const data = {
                         ...mailData.mail,
                         body: {
                             bodyType,
                             bodyContent
                         }
                     }
+            
+                    newMailData.data = data
         
                     try {
                         sendMail.send({
                             configData,
-                            mailData: newMailData
+                            mailData: newMailData.data
                         })
                                             
                     } catch (e) {
@@ -90,7 +98,7 @@ const sendImages = (images,content,mailData,configData)=>{
             fs.readFile(path.join(__dirname,x.filePath),(erro,buffer)=>{
                 if(erro){
                     fileImages=[]
-                    throw Error(`Image can´t be set. ${erro}`)
+                    //throw Error(`Images can´t be set. ${erro}`)
                 }else{
                     fileImages=[
                                     {
@@ -118,18 +126,20 @@ const sendImages = (images,content,mailData,configData)=>{
                                 
                     const bodyType = mail.body.bodyType
                                 
-                    const newMailData = {
+                    const data = {
                         ...mailData.mail,
                         body: {
                             bodyType,
                             bodyContent
                         }
                     }
+            
+                    newMailData.data = data
 
                     try {
                         sendMail.send({
                             configData,
-                            mailData: newMailData
+                            mailData: newMailData.data
                         })
                                     
                     } catch (e) {
@@ -144,7 +154,7 @@ const sendImages = (images,content,mailData,configData)=>{
     })
 
   return {
-      newFileImages
+      newMailData
     }
 }
 

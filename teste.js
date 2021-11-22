@@ -12,11 +12,12 @@ ejsSendMail({
 }).send({
     mail: {
         from: 'wx2sistemasteste@gmail.com',
-        to:'jefer210784@gmail.com,franciscco917@gmail.com',
-        subject:'Menagem para o Francisco',
+        to:'jefer.ld@hotmail.com',
+        subject:'Mensagem para o Francisco',
         body: {
             bodyType: 'text',
             content: `Testando`,
+            
                 
         }
     }

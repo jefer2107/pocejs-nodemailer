@@ -3,9 +3,7 @@ const ejsCompiler = require('./ejsCompiler')
 const sendImages = require("./sendImages")
 
 const ejsSendMail = (configData)=>{
-
     const send = (mailData)=>{
-        
         const newMailData = {
             data: null
         }
@@ -14,14 +12,14 @@ const ejsSendMail = (configData)=>{
         if(!mailData) throw Error('mailData wasn´n informed')
         if(!mailData.mail.from ) throw Error('from should be set')
         if(!mailData.mail.to ) throw Error('to should be set')
-    
+
         const {mail} = mailData
         let bodyContent
     
         if(mail.body && mail.body.bodyType) {
-            const {bodyType} = mail.body
             const images = mail.body.images
-    
+            const {bodyType} = mail.body
+            
             switch(bodyType){
                 case 'text':
                     bodyContent = mail.body.content
@@ -29,7 +27,7 @@ const ejsSendMail = (configData)=>{
                 case 'html':
                     if(images){
                             let content = mail.body.content
-                            sendImages(images,content,mailData,configData)
+                            sendImages(content,mailData,configData)
                             return false
                             
                         }
@@ -41,7 +39,7 @@ const ejsSendMail = (configData)=>{
                     const ejsCompiled = ejsCompiler(mail.body.content,mail.body?.ejsModel)
 
                     if(images){
-                            sendImages(images,ejsCompiled,mailData,configData)
+                            sendImages(ejsCompiled,mailData,configData)
                             return false
                         }
 
@@ -66,8 +64,6 @@ const ejsSendMail = (configData)=>{
 
         newMailData.data = data
 
-        //console.log('index newMailData: ',newMailData)
-
         try {
             sendMail.send({
                 configData,
@@ -90,6 +86,5 @@ const ejsSendMail = (configData)=>{
         send
     }
 }
-
 
 module.exports = ejsSendMail

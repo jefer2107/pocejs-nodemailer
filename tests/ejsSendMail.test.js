@@ -3,7 +3,6 @@ const sendMail = require("../emailService")
 const ejsSendMail = require('../index')
 const sinon = require('sinon')
 
-
 describe('ejsSendMail Test',()=>{
     describe('send',()=>{
         it('configData and mailData should be pass correctly',()=>{
@@ -94,7 +93,7 @@ describe('ejsSendMail Test',()=>{
             }
         })
 
-        it('Bodycontent must be the same as content passed by mailData with bodyType text',()=>{
+        it('Bodycontent should be the same as content passed by mailData with bodyType text',()=>{
 
             const sendMailData = {
                 mail:{
